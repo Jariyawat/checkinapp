@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ลงเวลาปฏิบัติงาน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f7f5; /* สีพื้นหลังคริสมาสต์ */
+        }
+
+        .container {
+            border: 1px solid #d3b39d; /* ขอบสีทอง */
+            border-radius: 10px;
+            padding: 20px;
+            background: #fffaf0; /* สีพื้นหลังกล่อง */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #b21f2d; /* สีแดงเข้มแบบคริสต์มาส */
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #9c3d8b; /* สีม่วง */
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 10px;
+            font-size: 1.2em;
+            color: #9c3d8b;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #d1a0d1; /* ขอบสีทอง */
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #fff7e6;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-primary {
+            background-color: #c2a3d7; /* สีม่วงทอง */
+            color: #fff;
+        }
+
+        .button-secondary {
+            background-color: #ffdf8f; /* สีทอง */
+            color: #b21f2d; /* ตัวอักษรสีแดง */
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .christmas-icon {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #9c3d8b;
+        }
+
+        /* เพิ่มรูปแซนตาคอสที่หน้าแรก */
+        .santa-image {
+            margin-top: 20px;
+            width: 150px;
+            height: auto;
+        }
+
+    </style>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const formattedTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            document.getElementById('current-time').innerText = formattedTime;
+        }
+
+        function logTime() {
+            const employeeId = document.getElementById('employee-id').value;
+            const now = new Date();
+            const loggedTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+            if (employeeId) {
+                // สร้างหน้าผลลัพธ์ใหม่และแสดงข้อมูลที่ลงเวลา
+                const resultHtml = `
+                    <div class="container">
+                        <div class="christmas-icon">🎄</div>
+                        <h1>ลงเวลาเรียบร้อย</h1>
+                        <div class="message">
+                            เวลาที่ลง: ${loggedTime}<br>
+                            รหัสพนักงาน: ${employeeId}
+                        </div>
+                        <button class="button button-primary" onclick="window.location.reload()">กลับไปหน้าแรก</button>
+                        <div class="santa-image">
+                            <img src="https://th.pngtree.com/freepng/santa-claus_2494509.html" alt="Santa Claus">
+                        </div>
+                    </div>
+                `;
+                document.body.innerHTML = resultHtml; // เปลี่ยนเนื้อหาของ body ให้แสดงหน้าใหม่
+            } else {
+                alert('กรุณากรอกรหัสพนักงาน');
+            }
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>PeaLife</h2>
+        <h1 id="current-time">--:--:--</h1>
+        <label for="employee-id">กรอกรหัสพนักงาน</label>
+        <input type="text" id="employee-id" placeholder="รหัสพนักงาน">
+
+        <button class="button button-primary" onclick="logTime()">ลงเวลา</button>
+        <button class="button button-secondary">ย้อนกลับ</button>
+
+        <!-- เพิ่มรูปแซนตาคอสที่หน้าแรก -->
+        <div class="santa-image">
+            <img src="https://th.pngtree.com/freepng/santa-claus_2494509.html" alt="Santa Claus">
+        </div>
+    </div>
+</body>
+</html>
